@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
+  <title>Url Shortener</title>
+</head>
+
+<body>
+  <div class="container" style="margin: 1.5rem auto">
+    <h1 class="title is-1">URL Shrinker</h1>
+
+    <form action="/shorturl" method="post" style="margin-bottom: 1.5rem">
+      <div class="field is-horizontal has-addons">
+        <div class="field-label is-normal" style="flex-grow: 0">
+          <label for="fullUrl" class="label">Url</label>
+        </div>
+
+        <div class="field-body">
+          <div class="control is-expanded">
+            <input type="url" name="fullUrl" id="fullUrl" class="input" placeholder="Url to be shrinked" />
+          </div>
+
+          <div class="control">
+            <button type="submit" class="button is-primary">Shrink</button>
+          </div>
+        </div>
+      </div>
+    </form>
+
+    <table class="table is-striped is-hoverable is-fullwidth">
+      <thead>
+        <tr>
+          <th>Full URL</th>
+          <th>Short URL</th>
+          <th>Clicks</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% shortUrls.forEach(shortUrl => { %>
+        <tr>
+          <td><a href="<%= shortUrl.full %>" target="_blank"><%= shortUrl.full %></a></td>
+          <td><a href="<%= shortUrl.short %>" target="_blank"><%= shortUrl.short %></a></td>
+          <td><%= shortUrl.clicks %></td>
+        </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+</body>
+
+</html>
